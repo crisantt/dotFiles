@@ -1,0 +1,22 @@
+[general]
+import = [
+"/home/cris/.config/alacritty/tokyonight.toml"
+]
+[font]
+normal = { family = "CodeNewRoman Nerd Font", style = "Regular" }
+size = 14.0
+
+[window]
+dynamic_padding = true
+
+[cursor]
+style = { shape = "Beam", blinking = "On"}
+
+[mouse]
+hide_when_typing = true
+
+[keyboard]
+bindings = [
+{ key = "N", mods = "Control | Shift", action = "SpawnNewInstance"},
+{ key = "Q", mods = "Control | Shift", action = "Quit"},
+]
