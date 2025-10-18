@@ -17,6 +17,7 @@ case "$answer" in
 		answer=${answer,,}
 		if [[ "$answer" == "yes" ]]; then
 			echo "---Installing AUR Helper (PARU)---"
+			sleep 5
 			sudo pacman -S --needed base-devel
 			cd "/home/$USER/Git"
 			git clone https://aur.archlinux.org/paru.git
@@ -26,11 +27,12 @@ case "$answer" in
 			cd "/home/$USER"
 		else 
 			echo "Skipping  this part..."
+			sleep 5
 		fi
-
-		echo
-		echo
+		
+		clear
 		echo -e "Setup Starting...\nHyprland Packages"
+		sleep 5
 		# Where installation starts
 		sudo pacman -Syu --noconfirm hyprland \
 			uwsm \
@@ -42,23 +44,23 @@ case "$answer" in
 			qt5-wayland \
 			qt6-wayland
 
-		echo
-		echo
+		clear
 		echo -e "\nSystem Packages"
+		sleep 5
 		sudo pacman -S --noconfirm libnotify \
 			wl-clipboard \
 			reflector \
 			unzip \
 			zip 
 
-		echo
-		echo
+		clear
 		echo -e "\nDeveloper Packages"
+		sleep 5
 		sudo pacman -S --noconfirm  go git man github-cli zig wget man tldr llvm cmake make lld clangd
 
-		echo
-		echo
+		clear
 		echo -e "\nUser Packages"
+		sleep 5
 		sudo pacman -S --noconfirm alacritty \
 			kitty \
 			ghostty \
@@ -72,9 +74,9 @@ case "$answer" in
 			pavucontrol
 		paru -S tofi
 
-		echo
-		echo
+		clear
 		echo -e "\nGaming Packages"
+		sleep 5
 		sudo pacman -S --noconfirm steam \
 			lib32-mesa \
 			vulkan-radeon \
@@ -128,9 +130,9 @@ case "$answer" in
 			lib32-gst-plugins-base-libs \
 			lutris
 
-		echo
-		echo
+		clear
 		echo -e "\nInstalling Fonts"
+		sleep 5
 		sudo pacman -S --noconfirm noto-fonts \
 			noto-fonts-cjk \
 			noto-fonts-emoji \
@@ -153,8 +155,7 @@ case "$answer" in
 		cd "/home/$USER"
 		fc-cache -fv
 
-		echo
-		echo
+		clear
 		echo -e "\nChoose your browser"
 		browser_opt=("Helium" "Floorp" "Firefox")
 		select browser in "${browser_opt[@]}"; do
