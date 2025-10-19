@@ -56,8 +56,8 @@ case "$answer" in
 		clear
 		echo -e "\nDeveloper Packages"
 		sleep 3
-		sudo pacman -S --noconfirm  go gopls git man github-cli wget man tldr llvm cmake make lld clangd stow fish jdk-openjdk
-
+		sudo pacman -S --noconfirm go gopls git man github-cli wget man tldr llvm cmake make lld stow fish jdk-openjdk
+		sleep 15
 		clear
 		echo -e "\nUser Packages"
 		sleep 3
