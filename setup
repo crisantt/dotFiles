@@ -10,10 +10,10 @@ mkdir -p "/home/$USER/Git"
 echo "Would you like to install the packages?"
 read -p "Enter [Y]es : [n]o: " answer
 case "$answer" in
-	y|Y) 
+	y|Y)
 		echo
 		echo -e "\nWould you like this script to build programs?"
-		read -p "Type yes : no: " answer        
+		read -p "Type yes : no: " answer
 		answer=${answer,,}
 		if [[ "$answer" == "yes" ]]; then
 			echo "---Installing AUR Helper (PARU)---"
@@ -25,11 +25,11 @@ case "$answer" in
 			makepkg -si
 			echo "---Paru Successfully Installed---"
 			cd "/home/$USER"
-		else 
+		else
 			echo "Skipping  this part..."
 			sleep 3
 		fi
-		
+
 		clear
 		echo -e "Setup Starting...\nHyprland Packages"
 		sleep 3
@@ -51,7 +51,7 @@ case "$answer" in
 			wl-clipboard \
 			reflector \
 			unzip \
-			zip 
+			zip
 
 		clear
 		echo -e "\nDeveloper Packages"
@@ -175,7 +175,7 @@ case "$answer" in
 			break
 		done
 		;;
-	n|N) 
+	n|N)
 		echo "Exiting..."
 		;;
 	*) echo "Invalid input. Please type (Y | y or n | N)";;
