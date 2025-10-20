@@ -1,23 +1,21 @@
-return{
-   {
-      'mason-org/mason.nvim',
-      dependencies = {
-         'WhoIsSethDaniel/mason-tool-installer.nvim',
-         opts = {
-            ensure_installed = {
-               -- Go
-               'gofmt',
-               'golangci-lint',
-               -- Java
-               'google-java-format',
-               'checkstyle',
-               -- Lua
-               'stylua',
-               'luacheck',
-            },
-         }
-      },
-      cmd = 'Mason',
-      opts = {},
-   }
+return {
+	{ "mason-org/mason.nvim", opts = {} },
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		opts = {
+			ensure_installed = {
+				-- Go
+				"gofumpt",
+				"gomodifytags",
+				"goimports-reviser",
+				"goimports",
+				-- Java
+				"google-java-format",
+				"checkstyle",
+				-- Lua
+				"stylua",
+				"luacheck",
+			},
+		},
+	},
 }
