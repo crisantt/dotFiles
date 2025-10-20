@@ -21,17 +21,17 @@ o.grepformat = "%f:%l:%c:%m"
 -- Search Settings
 o.ignorecase = true
 o.smartcase = true
-o.hlsearch =  true
+o.hlsearch = true
 o.incsearch = true
 
 -- Visual Settings
 o.termguicolors = true
-o.winborder = 'rounded'
-o.winblend = 50
-o.signcolumn = 'yes'
+o.winborder = "rounded"
+o.winblend = 0
+o.signcolumn = "yes"
 o.pumblend = 10
 o.showmode = false
-o.conceallevel = 0 
+o.conceallevel = 0
 o.concealcursor = ""
 o.lazyredraw = false
 o.redrawtime = 10000
@@ -92,5 +92,3 @@ o.foldlevel = 99 -- Keep all folds open by default
 -- Split Behavior
 o.splitbelow = true -- Horizontal splits open below
 o.splitright = true -- Vertical splits open to the right
-
-
