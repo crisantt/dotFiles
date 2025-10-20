@@ -1,3 +1,5 @@
 require("config.options")
 require("config.binds")
 require("config.lsp")
+require("config.autocmds")
+require("config.packs")

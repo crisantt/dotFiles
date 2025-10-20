@@ -44,7 +44,6 @@ bind("n", "<leader>rc", "<Cmd>e ~/dotFiles/Neovim-Nightly/.config/nvim/init.lua<
 bind("n", "<leader>e", "<Cmd>Ex<CR>", { desc = "Open Netrw" })
 
 -- Quitting
-bind("n", "<leader>q", "<Cmd>quit<CR>", { desc = "Quit" })
+bind("n", "<S-q>", "<Cmd>quit<CR>", { desc = "Quit" })
 bind("n", "<leader>w", "<Cmd>write<CR>", { desc = "Write" })
 bind("n", "<leader>s", "<Cmd>source<CR>", { desc = "Write" })
-
