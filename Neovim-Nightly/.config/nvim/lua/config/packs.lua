@@ -3,6 +3,8 @@ vim.pack.add {
     { src = 'https://github.com/nvim-lualine/lualine.nvim.git' },
     { src = 'https://github.com/ibhagwan/fzf-lua.git' },
     { src = 'https://github.com/nvim-tree/nvim-web-devicons.git' },
+    { src = 'https://github.com/ThePrimeagen/harpoon.git' },
+    { src = 'https://github.com/nvim-lua/plenary.nvim.git' },
 }
 
 vim.cmd [[colorscheme tokyonight]]
