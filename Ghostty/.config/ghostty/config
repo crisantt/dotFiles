@@ -3,7 +3,7 @@
 # FONT
 #font-family = "JetBrainsMono Nerd Font"
 font-family = "CodeNewRoman Nerd Font"
-font-size = 16
+font-size = 13
 
 # THEME
 theme = TokyoNight Moon
