@@ -24,3 +24,9 @@ bind("n", "<C-Left>", "<Cmd>vertical resize -2<CR>", { desc = "Decrease window w
 bind("n", "<C-Right>", "<Cmd>vertical resize +2<CR>", { desc = "Increase window width" })
 
 bind("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+
+-- Move lines up/down
+bind("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
+bind("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
+bind("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+bind("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })

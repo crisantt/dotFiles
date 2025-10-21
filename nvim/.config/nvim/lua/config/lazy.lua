@@ -1,3 +1,4 @@
+-- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -14,18 +15,21 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("config.globals")
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+-- This is also a good place to setup other settings (vim.opt)
 require("config.lsp")
 require("config.options")
+require("config.globals")
 require("config.keymaps")
 
+-- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
-		-- import/override with your plugins
+		-- import your plugins
 		{ import = "plugins" },
 	},
-	checker = {
-		enabled = true, -- check for plugin updates periodically
-		notify = false, -- notify on update
-	}, -- automatically check for plugin updates
+	-- Configure any other settings here. See the documentation for more details.
+	-- automatically check for plugin updates
+	checker = { enabled = true },
 })

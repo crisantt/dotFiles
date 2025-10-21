@@ -23,7 +23,7 @@ return {
 					},
 				},
 				keymap = {
-					["<C-f>"] = {},
+					preset = "default",
 				},
 				cmdline = {
 					enabled = false,
@@ -37,8 +37,8 @@ return {
 						enabled = true,
 						auto_show = true,
 						show_with_menu = true,
-						show_with_selection = true,
-						show_without_selection = false,
+						show_with_selection = false,
+						show_without_selection = true,
 					},
 					menu = {
 						border = nil,
