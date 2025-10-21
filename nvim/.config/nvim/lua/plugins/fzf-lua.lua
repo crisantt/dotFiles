@@ -15,32 +15,46 @@ return {
 				desc = "Fuzzy Find in current folder",
 			},
 			{
+				"<leader>ca",
+				function()
+					require("fzf-lua").lsp_code_actions()
+				end,
+				desc = "[c]ode [a]ctions",
+			},
+			{
 				"<leader>ff",
 				function()
 					require("fzf-lua").files()
 				end,
-				desc = "Search inside the current buffer/file",
+				desc = "[f]ind [f]iles in the current buffer",
 			},
 			{
 				"<leader>df",
 				function()
 					require("fzf-lua").lsp_definitions()
 				end,
-				desc = "FZF Definitions",
+				desc = "[g]o to [d]efinitions",
 			},
 			{
-				"<leader>fc",
+				"<leader>lr",
+				function()
+					require("fzf-lua").lsp_references()
+				end,
+				desc = "[l]ist [r]eferences",
+			},
+			{
+				"<leader>fw",
 				function()
 					require("fzf-lua").grep_curbuf()
 				end,
-				desc = "FZF buffer/file",
+				desc = "[f]ind [w]ords in current buffer",
 			},
 			{
-				"<leader>fq",
+				"<leader>qf",
 				function()
 					require("fzf-lua").lgrep_quickfix()
 				end,
-				desc = "Search inside the current buffer/file",
+				desc = "[q]uick [f]ix menu",
 			},
 		},
 	},

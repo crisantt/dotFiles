@@ -15,6 +15,9 @@ return {
 				-- Lua
 				"stylua",
 				"luacheck",
+
+				-- bash
+				"bash-language-server",
 			},
 		},
 	},
