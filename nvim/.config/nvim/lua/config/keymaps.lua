@@ -1,10 +1,10 @@
 local bind = vim.keymap.set
 
 -- Basic Config Write/Quit/Source/File Explorer
-bind("n", "<leader>e", "<cmd>Ex<CR>", { desc = "Open File Explorer" })
-bind("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit File" })
-bind("n", "<leader>w", "<cmd>w<CR>", { desc = "Write File" })
-bind("n", "<leader>so", "<cmd>so<CR>", { desc = "Source File" })
+bind("n", "<C-e>", "<cmd>Ex<CR>", { desc = "Open File Explorer" })
+bind("n", "<C-q>", "<cmd>q<CR>", { desc = "Quit File" })
+bind("n", "<C-w>", "<cmd>w<CR>", { desc = "Write File" })
+bind("n", "<C-s>", "<cmd>so<CR>", { desc = "Source File" })
 
 -- Clear highlight after searching
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Remove Highligh" })
