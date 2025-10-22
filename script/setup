@@ -178,8 +178,21 @@ case "$answer" in
 		cd "/home/$USER" || exit
 		sleep 3
 		fc-cache -fv
+   
+    clear
+    echo -e "\n----Installing Theme----"
+    paru -S tokyonight-gtk-theme-git
+    sleep 3
 
-		clear
+    clear
+    echo -e "\n----Installing Icons----"
+    mkdir -p "$HOME/.icons/"
+    cd "$HOME/.icons/" || exit
+    wget https://github.com/ljmill/tokyo-night-icons/releases/download/v0.2.0/TokyoNight-SE.tar.bz2
+    tar -xvf "TokyoNight-SE.tar.bz2"
+    sleep 5
+
+    clear
 		echo -e "\nChoose your browser"
 		browser_opt=("Helium" "Floorp" "Firefox")
 		select browser in "${browser_opt[@]}"; do
