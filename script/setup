@@ -8,23 +8,23 @@ echo "-----------------------"
 echo
 mkdir -p "/home/$USER/Git"
 echo "Would you like to install the packages?"
-read -p "Enter [Y]es : [n]o: " answer
+read -rp "Enter [Y]es : [n]o: " answer
 case "$answer" in
 	y|Y)
 		echo
 		echo -e "\nWould you like this script to build programs?"
-		read -p "Type yes : no: " answer
+		read -rp "Type yes : no: " answer
 		answer=${answer,,}
 		if [[ "$answer" == "yes" ]]; then
 			echo "---Installing AUR Helper (PARU)---"
 			sleep 3
 			sudo pacman -S --needed base-devel
-			cd "/home/$USER/Git"
+			cd "/home/$USER/Git" || exit
 			git clone https://aur.archlinux.org/paru.git
-			cd paru
+			cd paru || exit
 			makepkg -si
 			echo "---Paru Successfully Installed---"
-			cd "/home/$USER"
+			cd "/home/$USER" || exit
 		else
 			echo "Skipping  this part..."
 			sleep 3
@@ -43,6 +43,7 @@ case "$answer" in
 			hyprshot \
 			qt5-wayland \
 			qt6-wayland
+		sleep 3
 
 		clear
 		echo -e "\nSystem Packages"
@@ -56,23 +57,43 @@ case "$answer" in
 		clear
 		echo -e "\nDeveloper Packages"
 		sleep 3
-		sudo pacman -S --noconfirm go gopls git man github-cli wget man tldr llvm cmake make lld stow fish jdk-openjdk
-		sleep 15
+		sudo pacman -S --noconfirm go \
+       git \
+       man \
+       github-cli \
+       wget \
+       man \
+       tldr \
+       llvm \
+       cmake \
+       clang \
+       make \
+       lld \
+       stow \
+       fish \
+       jdk-openjdk \
+       nodejs \
+       npm \
+       tree-sitter \
+       tree \
+       bob \
+       fzf
+
+		sleep 3
 		clear
 		echo -e "\nUser Packages"
 		sleep 3
 		sudo pacman -S --noconfirm alacritty \
 			kitty \
-			ghostty \
 			mako \
-			neovim \
-			thunar \
+      yazi \
 			cliphist \
 			obs-studio \
 			obsidian \
 			discord \
-			pavucontrol
-		paru -S tofi
+			pavucontrol \
+      fuzzel
+		sleep 3
 
 		clear
 		echo -e "\nGaming Packages"
@@ -129,6 +150,7 @@ case "$answer" in
 			gst-plugins-base-libs \
 			lib32-gst-plugins-base-libs \
 			lutris
+		sleep 3
 
 		clear
 		echo -e "\nInstalling Fonts"
@@ -143,16 +165,18 @@ case "$answer" in
 			ttf-inconsolata \
 			ttf-linux-libertine \
 			ttf-freefont
+		sleep 3
 
 		mkdir -p "/home/$USER/.fonts"
-		cd "/home/$USER/.fonts"
+		cd "/home/$USER/.fonts" || exit
 		fonts=("CodeNewRoman" "DejaVuSansMono" "FiraCode" "JetBrainsMono" "Noto" "NerdFontsSymbolsOnly")
 		for font in "${fonts[@]}"; do
 			wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/$font.zip"
 			unzip -n "$font.zip"
 			rm -f "$font.zip"
 		done
-		cd "/home/$USER"
+		cd "/home/$USER" || exit
+		sleep 3
 		fc-cache -fv
 
 		clear
