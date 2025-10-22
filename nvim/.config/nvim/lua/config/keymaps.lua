@@ -24,7 +24,7 @@ bind("n", "<C-Left>", "<Cmd>vertical resize -2<CR>", { desc = "Decrease window w
 bind("n", "<C-Right>", "<Cmd>vertical resize +2<CR>", { desc = "Increase window width" })
 
 -- Diagnostics
-bind("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+bind("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "[d]isplay [q]uickfix list" })
 
 -- Move lines up/down
 bind("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
@@ -34,4 +34,5 @@ bind("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 -- Tab
 bind("n", "<A-t>", ":tabnew<CR>", { desc = "Create new tab" })
-bind("n", "<A-Tab>", ":+tabnext<CR>", { desc = "Navigate through tabs" })
+bind("n", "<A-b>", ":-tabnext<CR>", { desc = "Navigate through tabs" })
+bind("n", "<A-n>", ":+tabnext<CR>", { desc = "Navigate through tabs" })
