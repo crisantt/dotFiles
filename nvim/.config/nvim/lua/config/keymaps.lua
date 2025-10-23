@@ -1,7 +1,7 @@
 local bind = vim.keymap.set
 
 -- Basic Config Write/Quit/Source/File Explorer
-bind("n", "<C-e>", "<cmd>Ex<CR>", { desc = "Open File Explorer" })
+bind("n", "<A-e>", "<cmd>Ex<CR>", { desc = "Open File Explorer" })
 bind("n", "<C-q>", "<cmd>q<CR>", { desc = "Quit File" })
 bind("n", "<C-w>", "<cmd>w<CR>", { desc = "Write File" })
 bind("n", "<C-s>", "<cmd>so<CR>", { desc = "Source File" })
