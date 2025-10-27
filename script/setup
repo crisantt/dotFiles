@@ -2,62 +2,97 @@
 
 # - Post Arch installation script for me
 
-echo "-----------------------"
-echo "--- Post Arch Setup ---"
-echo "-----------------------"
+echo -e "\t-----------------------"
+echo -e "\t--- Post Arch Setup ---"
+echo -e "\t-----------------------"
 echo
 mkdir -p "/home/$USER/Git"
 echo "Would you like to install the packages?"
 read -rp "Enter [Y]es : [n]o: " answer
 case "$answer" in
-	y|Y)
-		echo
-		echo -e "\nWould you like this script to build programs?"
-		read -rp "Type yes : no: " answer
-		answer=${answer,,}
-		if [[ "$answer" == "yes" ]]; then
-			echo "---Installing AUR Helper (PARU)---"
-			sleep 3
-			sudo pacman -S --needed base-devel
-			cd "/home/$USER/Git" || exit
-			git clone https://aur.archlinux.org/paru.git
-			cd paru || exit
-			makepkg -si
-			echo "---Paru Successfully Installed---"
-			cd "/home/$USER" || exit
-		else
-			echo "Skipping  this part..."
-			sleep 3
-		fi
+   y|Y)
+      echo
+      echo -e "\nWould you like this script to build programs?"
+      read -rp "Type y for yes : n for no: " answer
+      answer=${answer,,}
+      if [[ "$answer" == "y" ]]; then
+         echo "---Installing AUR Helper (PARU)---"
+         sleep 3
+         sudo pacman -S --needed base-devel
+         cd "/home/$USER/Git" || exit
+         git clone https://aur.archlinux.org/paru.git
+         cd paru || exit
+         makepkg -si
+         echo "---Paru Successfully Installed---"
+         cd "/home/$USER" || exit
+      else
+         echo "Skipping  this part..."
+         sleep 3
+      fi
 
-		clear
-		echo -e "Setup Starting...\nHyprland Packages"
-		sleep 3
-		# Where installation starts
-		sudo pacman -Syu --noconfirm hyprland \
-			uwsm \
-			xdg-desktop-portal-hyprland \
-			xdg-desktop-portal-wlr \
-			xdg-desktop-portal-gtk \
-			hyprpaper \
-			hyprshot \
-			qt5-wayland \
-			qt6-wayland
-		sleep 3
+    # Wayland Packages
+    sudo pacman -S base-devel \
+       wayland-protocols \
+       wayland \
+       wl-clipboard \
+       xdg-desktop-portal-wlr \
+       xdg-desktop-portal-gtk \
+       qt5-wayland \
+       qt6-wayland \
 
-		clear
-		echo -e "\nSystem Packages"
-		sleep 3
-		sudo pacman -S --noconfirm libnotify \
-			wl-clipboard \
-			reflector \
-			unzip \
-			zip
+    echo -e "\n\t\t###Choose your preffered window manager###"
+    window_manager=("River" "Hyprland" "Niri")
+    select wm in "${window_manager[@]}"; do
+       if [[ "$wm" == "River" ]]; then
+          echo -e "\nInstalling River Window Manager"
+          sudo pacman -S --noconfirm libxkbcommon \
+             libevdev \
+             pixman \
+             pkgconf \
+             scdoc \
+             zig \
+             xorg-xwayland \
+             foot
+          sleep 5
+          mkdir -p "$HOME/.config/river"
+          mkdir -p "$HOME/BUILD/River-Build"
+          cd "$HOME/BUILD/River-Build" || exit
+          git clone https://codeberg.org/river/river.git
+          cd "river"
+          zig build -Dxwayland -Doptimize=ReleaseSafe --prefix ~/.local install
+          echo -e "\nInstallation Done"
 
-		clear
-		echo -e "\nDeveloper Packages"
-		sleep 3
-		sudo pacman -S --noconfirm go \
+       elif [[ "$wm" == "Hyprland" ]]; then
+          echo -e "\nInstalling Hyprland"
+          sudo pacman -S --noconfirm hyprland \
+             alacritty \
+             kitty \
+             uwsm \
+             xdg-desktop-portal-hyprland \
+             hyprpaper \
+             hyprshot
+          echo -e "\nInstallation Done"
+
+       elif [[ "$wm" == "Niri" ]]; then
+          echo -e "\nInstalling Niri"
+          sudo pacman -S --noconfirm niri
+          echo -e "\nInstallation Done"
+       fi
+       break
+    done
+
+    clear
+    echo -e "\nSystem Packages"
+    sleep 3
+    sudo pacman -S --noconfirm libnotify \
+       reflector \
+       unzip \
+       zip \
+       clear
+
+    echo -e "\nDeveloper Packages"
+    sleep 3
+    sudo pacman -S --noconfirm go \
        git \
        man \
        github-cli \
@@ -79,106 +114,104 @@ case "$answer" in
        bob \
        fzf
 
-		sleep 3
-		clear
-		echo -e "\nUser Packages"
-		sleep 3
-		sudo pacman -S --noconfirm alacritty \
-			kitty \
-			mako \
-      yazi \
-			cliphist \
-			obs-studio \
-			obsidian \
-			discord \
-			pavucontrol \
-      fuzzel
-		sleep 3
+    sleep 3
+    clear
+    echo -e "\nUser Packages"
+    sleep 3
+    sudo pacman -S --noconfirm mako \
+       yazi \
+       cliphist \
+       obs-studio \
+       obsidian \
+       discord \
+       pavucontrol \
+       fuzzel
+    sleep 3
 
-		clear
-		echo -e "\nGaming Packages"
-		sleep 3
-		sudo pacman -S --noconfirm steam \
-			lib32-mesa \
-			vulkan-radeon \
-			lib32-vulkan-radeon \
-			vulkan-icd-loader \
-			lib32-vulkan-icd-loader \
-			wine-staging \
-			giflib \
-			lib32-giflib \
-			libpng \
-			lib32-libpng \
-			libldap \
-			lib32-libldap \
-			gnutls \
-			lib32-gnutls \
-			mpg123 \
-			lib32-mpg123 \
-			openal \
-			lib32-openal \
-			v4l-utils \
-			lib32-v4l-utils \
-			libpulse \
-			lib32-libpulse \
-			libgpg-error \
-			lib32-libgpg-error \
-			alsa-plugins \
-			lib32-alsa-plugins \
-			alsa-lib \
-			lib32-alsa-lib \
-			libjpeg-turbo \
-			lib32-libjpeg-turbo \
-			sqlite \
-			lib32-sqlite \
-			libxcomposite \
-			lib32-libxcomposite \
-			libxinerama \
-			lib32-libxinerama \
-			libgcrypt \
-			lib32-libgcrypt \
-			ncurses \
-			lib32-ncurses \
-			opencl-icd-loader \
-			lib32-opencl-icd-loader \
-			libxslt \
-			lib32-libxslt \
-			libva \
-			lib32-libva \
-			gtk3 \
-			lib32-gtk3 \
-			gst-plugins-base-libs \
-			lib32-gst-plugins-base-libs \
-			lutris
-		sleep 3
+    clear
+    echo -e "\nGaming Packages"
+    sleep 3
+    sudo pacman -S --noconfirm steam \
+       lib32-mesa \
+       vulkan-radeon \
+       lib32-vulkan-radeon \
+       vulkan-icd-loader \
+       lib32-vulkan-icd-loader \
+       wine-staging \
+       giflib \
+       lib32-giflib \
+       libpng \
+       lib32-libpng \
+       libldap \
+       lib32-libldap \
+       gnutls \
+       lib32-gnutls \
+       mpg123 \
+       lib32-mpg123 \
+       openal \
+       lib32-openal \
+       v4l-utils \
+       lib32-v4l-utils \
+       libpulse \
+       lib32-libpulse \
+       libgpg-error \
+       lib32-libgpg-error \
+       alsa-plugins \
+       lib32-alsa-plugins \
+       alsa-lib \
+       lib32-alsa-lib \
+       libjpeg-turbo \
+       lib32-libjpeg-turbo \
+       sqlite \
+       lib32-sqlite \
+       libxcomposite \
+       lib32-libxcomposite \
+       libxinerama \
+       lib32-libxinerama \
+       libgcrypt \
+       lib32-libgcrypt \
+       ncurses \
+       lib32-ncurses \
+       opencl-icd-loader \
+       lib32-opencl-icd-loader \
+       libxslt \
+       lib32-libxslt \
+       libva \
+       lib32-libva \
+       gtk3 \
+       lib32-gtk3 \
+       gst-plugins-base-libs \
+       lib32-gst-plugins-base-libs \
+       lutris
+    sleep 3
 
-		clear
-		echo -e "\nInstalling Fonts"
-		sleep 3
-		sudo pacman -S --noconfirm noto-fonts \
-			noto-fonts-cjk \
-			noto-fonts-emoji \
-			noto-fonts-extra \
-			ttf-dejavu \
-			ttf-liberation \
-			ttf-ubuntu-font-family \
-			ttf-inconsolata \
-			ttf-linux-libertine \
-			ttf-freefont
-		sleep 3
+    clear
+    echo -e "\nInstalling Fonts"
+    sleep 3
+    sudo pacman -S --noconfirm noto-fonts \
+       noto-fonts-cjk \
+       noto-fonts-emoji \
+       noto-fonts-extra \
+       ttf-dejavu \
+       ttf-liberation \
+       ttf-ubuntu-font-family \
+       ttf-inconsolata \
+       ttf-linux-libertine \
+       ttf-freefont
+    sleep 3
 
-		mkdir -p "/home/$USER/.fonts"
-		cd "/home/$USER/.fonts" || exit
-		fonts=("CodeNewRoman" "DejaVuSansMono" "FiraCode" "JetBrainsMono" "Noto" "NerdFontsSymbolsOnly")
-		for font in "${fonts[@]}"; do
-			wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/$font.zip"
-			unzip -n "$font.zip"
-			rm -f "$font.zip"
-		done
-		cd "/home/$USER" || exit
-		sleep 3
-		fc-cache -fv
-   
+    mkdir -p "/home/$USER/.fonts"
+    cd "/home/$USER/.fonts" || exit
+    fonts=("CodeNewRoman" "DejaVuSansMono" "FiraCode" "JetBrainsMono" "Noto" "NerdFontsSymbolsOnly")
+    for font in "${fonts[@]}"; do
+       wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/$font.zip"
+       unzip -n "$font.zip"
+       rm -f "$font.zip"
+    done
+    cd "/home/$USER" || exit
+    sleep 3
+    fc-cache -fv
+
     clear
     echo -e "\n----Installing Theme----"
     paru -S tokyonight-gtk-theme-git
@@ -193,27 +226,29 @@ case "$answer" in
     sleep 5
 
     clear
-		echo -e "\nChoose your browser"
-		browser_opt=("Helium" "Floorp" "Firefox")
-		select browser in "${browser_opt[@]}"; do
-			if [[ "$browser" == "Helium" ]]; then
-				echo -e "\nInstalling Helium Browser"
-				paru -S helium-browser-bin
-				echo -e "\nInstallation Done"
-			elif [[ "$browser" == "Floorp" ]]; then
-				echo -e "\nInstalling Floorp Browser"
-				paru -S floorp
-				echo -e "\nInstallation Done"
-			elif [[ "$browser" == "Firefox" ]]; then
-				echo -e "\nInstalling Firefox Browser"
-				sudo pacman -S firefox
-				echo -e "\nInstallation Done"
-			fi
-			break
-		done
-		;;
-	n|N)
-		echo "Exiting..."
-		;;
-	*) echo "Invalid input. Please type (Y | y or n | N)";;
+    echo -e "\nChoose your browser"
+
+    browser_opt=("Helium" "Floorp" "Firefox")
+    select browser in "${browser_opt[@]}"; do
+       if [[ "$browser" == "Helium" ]]; then
+          echo -e "\nInstalling Helium Browser"
+          paru -S helium-browser-bin
+          echo -e "\nInstallation Done"
+       elif [[ "$browser" == "Floorp" ]]; then
+          echo -e "\nInstalling Floorp Browser"
+          paru -S floorp
+          echo -e "\nInstallation Done"
+       elif [[ "$browser" == "Firefox" ]]; then
+          echo -e "\nInstalling Firefox Browser"
+          sudo pacman -S firefox
+          echo -e "\nInstallation Done"
+       fi
+       break
+    done
+
+    ;;
+ n|N)
+    echo "Exiting..."
+    ;;
+ *) echo "Invalid input. Please type (Y | y or n | N)";;
 esac
