@@ -1,68 +1,28 @@
 return {
-    "ibhagwan/fzf-lua",
-    lazy = false,
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    keys = {
-        {
-            "<leader>ff",
-            function()
-                require("fzf-lua").files()
-            end,
-            desc = "Fuzzy Find Files",
-        },
+   "ibhagwan/fzf-lua",
+   dependencies = { "nvim-tree/nvim-web-devicons" },
+   cmd = "FzfLua",
+   opts = {
+   },
+   keys = {
+      { "<leader>sf",
+      function()
+         require("fzf-lua").files()
+      end,
+      desc = "Fuzzy Find Files in project",
+   },
+   { "<leader>ca",
+   function()
+      require("fzf-lua").lsp_code_actions()
+   end,
+   desc = "Code Actions",
+},
 
-        {
-            "<leader>fg",
-            function()
-                require("fzf-lua").live_grep()
-            end,
-            desc = "Live Grep fzf",
-        },
-
-        {
-            "<leader>fb",
-            function()
-                require("fzf-lua").buffers()
-            end,
-            desc = "Fuzzy Find Buffers",
-        },
-
-        {
-            "<leader>fh",
-            function()
-                require("fzf-lua").help_tags()
-            end,
-            desc = "FZF Help Tags",
-        },
-        {
-            "<leader>fx",
-            function()
-                require("fzf-lua").diagnostics_document()
-            end,
-            desc = "FZF Diagnostics Document",
-        },
-        {
-            "<leader>fX",
-            function()
-                require("fzf-lua").diagnostics_workspace()
-            end,
-            desc = "FZF Diagnostics Workspace",
-        },
-        {
-            "<leader>fs",
-            function()
-                require("fzf-lua").lsp_document_symbols()
-            end,
-            desc = "FZF Document Symbols",
-        },
-        {
-            "<leader>fS",
-            function()
-                require("fzf-lua").lsp_workspace_symbols()
-            end,
-            desc = "FZF Workspace Symbols",
-        },
-
-    },
-    opts = {}
+{ "<leader>gd",
+function()
+   require("fzf-lua").lsp_definitions()
+end,
+desc = "Go to definition",
+   },
+}
 }
