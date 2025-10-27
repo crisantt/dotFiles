@@ -125,7 +125,8 @@ case "$answer" in
        obsidian \
        discord \
        pavucontrol \
-       fuzzel
+       fuzzel \
+       bat
     sleep 3
 
     clear
