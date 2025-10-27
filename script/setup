@@ -38,7 +38,7 @@ case "$answer" in
        xdg-desktop-portal-wlr \
        xdg-desktop-portal-gtk \
        qt5-wayland \
-       qt6-wayland \
+       qt6-wayland
 
     echo -e "\n\t\t###Choose your preffered window manager###"
     window_manager=("River" "Hyprland" "Niri")
@@ -87,7 +87,7 @@ case "$answer" in
     sudo pacman -S --noconfirm libnotify \
        reflector \
        unzip \
-       zip \
+       zip
        clear
 
     echo -e "\nDeveloper Packages"
@@ -105,7 +105,6 @@ case "$answer" in
        make \
        lld \
        stow \
-       fish \
        jdk-openjdk \
        nodejs \
        npm \
