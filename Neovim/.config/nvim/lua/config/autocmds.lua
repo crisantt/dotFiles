@@ -8,8 +8,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- Run FzfLua register_ui_select when Neovim starts
---vim.api.nvim_create_autocmd("VimEnter", {
---   callback = function()
---       vim.cmd("FzfLua register_ui_select")
---   end,
---})
+vim.api.nvim_create_autocmd("VimEnter", {
+   callback = function()
+       vim.cmd("FzfLua register_ui_select")
+   end,
+})

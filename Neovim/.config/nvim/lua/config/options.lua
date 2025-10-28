@@ -92,3 +92,7 @@ o.foldlevel = 99 -- Keep all folds open by default
 -- Split Behavior
 o.splitbelow = true -- Horizontal splits open below
 o.splitright = true -- Vertical splits open to the right
+
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })

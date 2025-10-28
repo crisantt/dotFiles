@@ -10,19 +10,21 @@ return {
          require("fzf-lua").files()
       end,
       desc = "Fuzzy Find Files in project",
-   },
-   { "<leader>ca",
-   function()
-      require("fzf-lua").lsp_code_actions()
-   end,
-   desc = "Code Actions",
-},
+      },
 
-{ "<leader>gd",
-function()
-   require("fzf-lua").lsp_definitions()
-end,
-desc = "Go to definition",
-   },
-}
+      { "<leader>ca",
+      function()
+         require("fzf-lua").lsp_code_actions()
+      end,
+      desc = "Code Actions",
+      },
+
+      { "<leader>gd",
+      function()
+      require("fzf-lua").lsp_definitions()
+      end,
+      desc = "Go to definition",
+      },
+
+   }
 }

@@ -7,7 +7,7 @@ bind("n", "<leader>w", "<cmd>w<CR>", { desc = "Write File" })
 bind("n", "<leader>ss", "<cmd>so<CR>", { desc = "Source File" })
 
 -- Clear highlight after searching
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Remove Highligh" })
+bind("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Remove Highligh" })
 
 -- Window Navigation
 bind("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
