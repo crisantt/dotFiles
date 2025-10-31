@@ -47,7 +47,7 @@ case "$answer" in
           echo -e "\nInstalling River Window Manager"
           sudo pacman -S --noconfirm libxkbcommon \
              libevdev \
-	     wlroots0.19 \
+             wlroots0.19 \
              pixman \
              pkgconf \
              scdoc \
