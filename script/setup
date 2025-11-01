@@ -120,7 +120,8 @@ case "$answer" in
        discord \
        pavucontrol \
        fuzzel \
-       bat
+       bat \
+       starship
     paru -S nerdfetch
 
     echo -e "\nGaming Packages"
