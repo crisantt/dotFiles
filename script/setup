@@ -53,7 +53,7 @@ case "$answer" in
              scdoc \
              zig \
              xorg-xwayland \
-             foot
+             alacritty 
           sleep 5
           mkdir -p "$HOME/.config/river"
           mkdir -p "$HOME/BUILD/River-Build"
@@ -127,6 +127,7 @@ case "$answer" in
        pavucontrol \
        fuzzel \
        bat
+    paru -S nerdfetch
     sleep 3
 
     clear
@@ -247,6 +248,8 @@ case "$answer" in
        break
     done
 
+    echo "source $HOME/dotfles/bashrc" >> "$HOME/.bashrc"
+    source "$HOME/.bashrc"
     ;;
  n|N)
     echo "Exiting..."
