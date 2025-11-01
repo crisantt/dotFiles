@@ -10,6 +10,15 @@
 
 # Note: the "Super" modifier is also known as Logo, GUI, Windows, Mod4, etc.
 
+# Wallpaper & Themes
+wbg -s ~/Pictures/b-682.jpg
+gsettings set org.gnome.desktop.interface gtk-theme "Tokyonight-Dark"
+gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+gsettings set org.gnome.desktop.interface icon-theme "TokyoNight-SE"
+
+
+# River Config
+
 # Super+Shift+Return to start an instance of foot (https://codeberg.org/dnkl/foot)
 riverctl map normal Super Return spawn alacritty
 
@@ -163,9 +172,3 @@ riverctl rule-add -app-id "bar" csd
 # River will send the process group of the init executable SIGTERM on exit.
 riverctl default-layout rivertile
 rivertile -view-padding 6 -outer-padding 6 &
-
-# Wallpaper & Themes
-wbg -s ~/Downloads/arch.png
-gsettings set org.gnome.desktop.interface gtk-theme "Tokyonight-Dark"
-gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
-gsettings set org.gnome.desktop.interface icon-theme "TokyoNight-SE"

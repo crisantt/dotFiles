@@ -1,10 +1,12 @@
 export PATH=$PATH:"$HOME/.local/bin"
-nerdfetch
+nerdfetch && echo -e "\n"
+eval -- "$(/usr/bin/starship init bash --print-full-init)"
 
 # Most Used alias
 alias v='nvim'
 alias cat='bat'
-alias custom='cd /home/cris/.config/hypr && nvim hyprland.conf'
+alias customv='nvim $HOME/dotfiles/'
+alias custom='cd $HOME/dotfiles/'
 alias search='sudo pacman -Ss'
 alias install='sudo pacman -S'
 alias remove='sudo pacman -Rns'

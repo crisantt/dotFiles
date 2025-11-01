@@ -17,7 +17,6 @@ case "$answer" in
       answer=${answer,,}
       if [[ "$answer" == "y" ]]; then
          echo "---Installing AUR Helper (PARU)---"
-         sleep 3
          sudo pacman -S --needed base-devel
          cd "/home/$USER/Git" || exit
          git clone https://aur.archlinux.org/paru.git
@@ -29,6 +28,8 @@ case "$answer" in
          echo "Skipping  this part..."
          sleep 3
       fi
+
+###### PACKAGES SECTION ######
 
     # Wayland Packages
     sudo pacman -S base-devel \
@@ -54,7 +55,6 @@ case "$answer" in
              zig \
              xorg-xwayland \
              alacritty 
-          sleep 5
           mkdir -p "$HOME/.config/river"
           mkdir -p "$HOME/BUILD/River-Build"
           cd "$HOME/BUILD/River-Build" || exit
@@ -82,17 +82,13 @@ case "$answer" in
        break
     done
 
-    clear
     echo -e "\nSystem Packages"
-    sleep 3
     sudo pacman -S --noconfirm libnotify \
        reflector \
        unzip \
        zip
-       clear
 
     echo -e "\nDeveloper Packages"
-    sleep 3
     sudo pacman -S --noconfirm go \
        git \
        man \
@@ -114,10 +110,8 @@ case "$answer" in
        bob \
        fzf
 
-    sleep 3
     clear
     echo -e "\nUser Packages"
-    sleep 3
     sudo pacman -S --noconfirm mako \
        yazi \
        cliphist \
@@ -128,11 +122,8 @@ case "$answer" in
        fuzzel \
        bat
     paru -S nerdfetch
-    sleep 3
 
-    clear
     echo -e "\nGaming Packages"
-    sleep 3
     sudo pacman -S --noconfirm steam \
        lib32-mesa \
        vulkan-radeon \
@@ -187,9 +178,10 @@ case "$answer" in
        lutris
     sleep 3
 
+###### THEMES SECTION ######
+
     clear
     echo -e "\nInstalling Fonts"
-    sleep 3
     sudo pacman -S --noconfirm noto-fonts \
        noto-fonts-cjk \
        noto-fonts-emoji \
@@ -200,7 +192,6 @@ case "$answer" in
        ttf-inconsolata \
        ttf-linux-libertine \
        ttf-freefont
-    sleep 3
 
     mkdir -p "/home/$USER/.fonts"
     cd "/home/$USER/.fonts" || exit
@@ -211,21 +202,21 @@ case "$answer" in
        rm -f "$font.zip"
     done
     cd "/home/$USER" || exit
-    sleep 3
     fc-cache -fv
 
-    clear
     echo -e "\n----Installing Theme----"
     paru -S tokyonight-gtk-theme-git
-    sleep 3
 
-    clear
     echo -e "\n----Installing Icons----"
     mkdir -p "$HOME/.icons/"
     cd "$HOME/.icons/" || exit
-    wget https://github.com/ljmill/tokyo-night-icons/releases/download/v0.2.0/TokyoNight-SE.tar.bz2
+    wget "https://github.com/ljmill/tokyo-night-icons/releases/download/v0.2.0/TokyoNight-SE.tar.bz2"
     tar -xvf "TokyoNight-SE.tar.bz2"
-    sleep 5
+
+    echo -e "\n----Installing Wallpapers----"
+    wget "https://github.com/whoisYoges/lwalpapers/blob/PicturesOnly/wallpapers/b-682.jpg" --directory-prefix="$HOME/Pictures/Wallpapers"
+
+###### BROWSER SECTION ######
 
     clear
     echo -e "\nChoose your browser"
@@ -248,7 +239,7 @@ case "$answer" in
        break
     done
 
-    echo "source $HOME/dotfles/bashrc" >> "$HOME/.bashrc"
+    echo "source $HOME/dotfiles/bashrc" >> "$HOME/.bashrc"
     source "$HOME/.bashrc"
     ;;
  n|N)
