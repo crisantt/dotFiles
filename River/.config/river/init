@@ -108,10 +108,10 @@ riverctl map normal Super Space toggle-float
 riverctl map normal Super F toggle-fullscreen
 
 # Super+{Up,Right,Down,Left} to change layout orientation
-riverctl map normal Super Up    send-layout-cmd rivertile "main-location top"
-riverctl map normal Super Right send-layout-cmd rivertile "main-location right"
-riverctl map normal Super Down  send-layout-cmd rivertile "main-location bottom"
-riverctl map normal Super Left  send-layout-cmd rivertile "main-location left"
+riverctl map normal Shift Up    send-layout-cmd rivertile "main-location top"
+riverctl map normal Shift Right send-layout-cmd rivertile "main-location right"
+riverctl map normal Shift Down  send-layout-cmd rivertile "main-location bottom"
+riverctl map normal Shift Left  send-layout-cmd rivertile "main-location left"
 
 # Declare a passthrough mode. This mode has only a single mapping to return to
 # normal mode. This makes it useful for testing a nested wayland compositor
@@ -122,6 +122,19 @@ riverctl map normal Super F11 enter-mode passthrough
 
 # Super+F11 to return to normal mode
 riverctl map passthrough Super F11 enter-mode normal
+
+# Audio Binds
+riverctl map normal Super Up spawn 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 5.0%+'
+riverctl map normal Super Down spawn 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 5.0%-'
+riverctl map normal Super M spawn 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'
+
+# Screenshot Bind
+riverctl map normal Super Print spawn 'hyprshot -zm output -o /home/cris/Pictures/Screenshots/Full'
+riverctl map normal Super+Shift S spawn 'hyprshot -zm region -o /home/cris/Pictures/Screenshots/Region'
+riverctl map normal Super S spawn 'hyprshot  -zm region --clipboard-only'
+
+# Clipboard
+riverctl map normal Super C spawn 'cliphist list | fuzzel --dmenu | cliphist decode | wl-copy'
 
 # Various media key mapping examples for both normal and locked mode which do
 # not have a modifier
